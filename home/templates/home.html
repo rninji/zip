@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zip 메인 홈</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;1,200;1,300;1,400&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
+    <script src="https://kit.fontawesome.com/82b3624cb5.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+</head>
+
+<body>
+    <!-- 00.HEADER -->
+    <nav class="navbar">
+        <div class="navbar__left">
+            <div class="navbar__logo">
+                <a href="">ZIP</a>
+            </div>
+            <ul class="navbar__menu">
+                <li><a href="{%url 'home' %}">Home</a></li>
+                <li><a href="{% url 'curation' %}">Curation</a></li>
+                <li><a href="{% url 'homeitem' %}">Products</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'mypage' username=user.username %}">MyPage</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="navbar__right">
+            <div class="navbar__icons">
+                <a class="icons-new-curation" href="../pick_board/pick_board.html">
+                    <i class="fas fa-plus"></i>
+                    <span>새 큐레이션</span>
+                </a>
+                <div class="icons-login">
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'mypage' username=user.username %}">마이페이지</a>
+                    <a href="{% url 'logout' %}">로그아웃</a>
+                    {% else%}
+                    <a href="{% url 'signup' %}">회원가입</a>
+                    <a href="{% url 'login' %}">로그인</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 01. 검색창 -->
+    <div class="search-container">
+        <div class="search-container2">
+            <div class="search-info">
+                <span>다른 사람의 인테리어 큐레이션을 구경해보세요</span>
+            </div>
+            <div class="input-group mb-3 search-input">
+                <input type="text" class="form-control" placeholder="컨셉, 제품명, 태그 등을 입력하세요."
+                    aria-label="컨셉, 제품명, 태그 등을 입력하세요." aria-describedby="button-addon2">
+                <!-- <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button> -->
+                <button id="search"><i class="fas fa-search icon"></i></button>
+            </div>
+            <div class="search-tags">
+                <span><a href="">#내추럴</a></span>
+                <span><a href="">#원룸</a></span>
+                <span><a href="">#감성포스터</a></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 인기 큐레이터 -->
+    <div class="popular-curators">
+        <div class="popular-curators-info">
+            <div class="popular-curators-title">
+                <span>인기 큐레이터</span>
+            </div>
+            <div class="popluar-curators-subtitle">
+                <span>취향과 개성이 드러나는 큐레이터를 소개합니다.</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <img src="{% static 'images/myphoto.jpg' %}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">김서연 큐레이터</h5>
+                        <p class="card-text">인테리어에 관심이 많은 실내디자인학과 학생입니다.</p>
+                        <a href="{% url 'mypage' username='curator' %}" class="btn btn-light">큐레이션 보러가기</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="{% static 'images/minji.jpg' %}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">minji 큐레이터</h5>
+                        <p class="card-text">안녕하세요~ 자기소개입니다 야호</p>
+                        <a href="{% url 'mypage' username='minji' %}" class="btn btn-light">큐레이션 보러가기</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="{% static 'images/min.jpg' %}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">min 큐레이터</h5>
+                        <p class="card-text">자기소개입니당</p>
+                        <a href="{% url 'mypage' username='min' %}" class="btn btn-light">큐레이션 보러가기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 02. 인기 큐레이션  -->
+
+    <div id="carouselExampleDark" class="carousel carousel-dark slide popular-curation" data-bs-ride="carousel">
+        <div class="popular-curation-info">
+            <div class="popular-curation-title">
+                <span>인기 큐레이션</span>
+            </div>
+            <div class="popluar-curation-subtitle">
+                <span>최근 일주일 동안 가장 인기 있었던 큐레이션을 소개합니다</span>
+            </div>
+        </div>
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="10000">
+                <img src="{% static 'images/test1.jpg' %}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>First slide label</h5>
+                    <p>Some representative placeholder content for the first slide.</p>
+                </div>
+
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="{% static 'images/test2.png' %}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Second slide label</h5>
+                    <p>Some representative placeholder content for the second slide.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/test3.jpg' %}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Third slide label</h5>
+                    <p>Some representative placeholder content for the third slide.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+</body>
+
+</html>

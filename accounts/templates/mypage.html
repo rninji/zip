@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ko">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반응형 헤더 만들기</title>
+    <script src="https://kit.fontawesome.com/82b3624cb5.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;1,200;1,300;1,400&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="{% static 'css/mycurator.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="profile">
+                <div class="background">
+                </div>
+                <div class="profile-image">
+                    <!-- <img src="../images/myphoto.jpg" alt=""> -->
+                    <img src={% if person.profile.profile_image %}
+                "{{ person.profile.profile_image.url }}"
+                {% else %}
+                "https://i.stack.imgur.com/34AD2.jpg"
+                {% endif %}>
+                </div>
+                <ul class="profile-description">
+                    <li class="name">
+                        {% if person.profile.nickname %}
+                <h2>{{ person.profile.nickname }}</h2>
+                {% else %}
+                <h2>{{ person.username }}</h2>
+                {% endif %}
+                {% if person.username == user.username %}
+                <a href="{% url 'profile' %}"><button class="btn btn-success">프로필 편집</button></a>
+                {% endif %}
+                    </li>
+                    <li class="follower-info">
+                        <span class="fol-txt">팔로워</span>
+                        <span class="fol-num">30</span>
+                        <span class="line"></span>
+                        <span class="fol-txt">팔로잉</span>
+                        <span class="fol-num">1</span>
+                    </li>
+                    <li class="description">
+                        {{ person.profile.description }}
+                    </li>
+                </ul>
+            </div>
+            <div class="follow-button">
+                <button>팔로우</button>
+            </div>
+            <div class="profile-info row">
+                <div class="evalution col flex-container">
+                    <div>
+                        <div class="evalution-num">123</div>
+                        <div class="evalution-txt">평가</div>
+                    </div>
+                </div>
+                <div class="comment col flex-container">
+                    <div>
+                        <div class="evalution-num">0</div>
+                        <div class="evalution-txt">코멘트</div>
+                    </div>
+                </div>
+                <div class="collec col flex-container">
+                    <div>
+                        <div class="evalution-num">20</div>
+                        <div class="evalution-txt">컬렉션</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="collection">
+            <div class="collection-title">
+                <span>보관함</span>
+                <hr>
+            </div>
+            <div class="collection-container">
+                <div class="collection-container-title">
+                    <span>Collection 1</span>
+                    <div class="collection-container-description">
+                        <span>30살에 내 집 마련 후 사고 싶은 인테리어 소품</span>
+                    </div>
+                    <div class="row">
+                        <div class="col collection-card">hi</div>
+                        <div class="col collection-card">hi</div>
+                        <div class="col collection-card">hi</div>
+                    </div>
+                    <div class="row">
+                        <div class="col collection-card">hi</div>
+                        <div class="col collection-card">hi</div>
+                        <div class="col collection-card">hi</div>
+                    </div>
+                </div>
+            </div>
+            <div class="collection-container">
+                <div class="collection-container-title">
+                    <span>Collection 2</span>
+                    <div class="collection-container-description">
+                        <span>20살에 오피스텔에 산다면?</span>
+                    </div>
+                    <div class="row">
+                        <div class="col collection-card">hi</div>
+                        <div class="col collection-card">hi</div>
+                        <div class="col collection-card">hi</div>
+                    </div>
+                    <div class="row">
+                        <div class="col collection-card">hi</div>
+                        <div class="col collection-card">hi</div>
+                        <div class="col collection-card">hi</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="comment-container">
+            <div class="comment-container-title">
+                <span>코멘트</span>
+            </div>
+            <form action="">
+                <div class="input-group comment-write mb-3">
+                    <label for="comment" class="form-label comment-label"></label>
+                    <input type="email" class="form-control comment-input" id="exampleFormControlInput1" placeholder="코멘트를 남겨주세요">
+                    <button class="btn comment-btn">댓글등록</button>
+                </div>
+            </form>
+            <div class="comment-others-container">
+                <ul class="comment-others">
+                    <li class="comment-feed__list__item">
+                        <div class="comment-feet__list__contents">
+                            <div class="comment-feed__item">
+                                <a href="">
+                                    <!-- <img src="./images/myphoto.jpg" alt=""> -->
+                                </a>
+                            </div>
+                            <div class="comment-feed__text">
+                                <div class="comment-feed-name">김서연</div>
+                                <span>오 첫번째 컬렉션 너무 제스타일이에요 ^^</span>
+                            </div>
+                            <footer class="comment-feed__item__footer">
+                                <button class="comment-feed__item__footer__likes__icon" type="button">
+                                    하트
+                                </button>
+                                <span class="comment-feed__item__footer__likes__count">0</span>
+                                </span>
+                                <button class="comment-feed__item__footer__like-btn" type="button">좋아요</button>
+                                <button class="comment-feed__item__footer__reply-btn" type="button">답글 달기</button>
+                                <button class="comment-feed__item__footer__report-btn" type="button">신고</button>
+                            </footer>
+                        </div>
+                    </li>
+                    <li class="comment-feed__list__item">
+                        <div class="comment-feet__list__contents">
+                            <div class="comment-feed__item">
+                                <a href="">
+                                    <!-- <img src="./images/myphoto.jpg" alt=""> -->
+                                </a>
+                            </div>
+                            <div class="comment-feed__text">
+                                <div class="comment-feed-name">김서연</div>
+                                <span>오 첫번째 컬렉션 너무 제스타일이에요 ^^</span>
+                            </div>
+                            <footer class="comment-feed__item__footer">
+                                <button class="comment-feed__item__footer__likes__icon" type="button">
+                                    하트
+                                </button>
+                                <span class="comment-feed__item__footer__likes__count">0</span>
+                                </span>
+                                <button class="comment-feed__item__footer__like-btn" type="button">좋아요</button>
+                                <button class="comment-feed__item__footer__reply-btn" type="button">답글 달기</button>
+                                <button class="comment-feed__item__footer__report-btn" type="button">신고</button>
+                            </footer>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+</body>
+

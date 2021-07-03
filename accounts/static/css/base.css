@@ -1,0 +1,98 @@
+:root{
+    --text-color: #494949;
+    --header-color:#212121;
+    --sub-text-color: #c2c2c2;
+    --point-color:#651fff ;
+    --body-color: #f5f5f5;
+
+}
+
+
+body{
+    margin: 0;
+    font-family: 'Source Sans Pro';
+    background-color: var(--body-color);
+}
+a{
+    text-decoration: none;
+    color: var(--sub-text-color);
+}
+a:hover{
+    color: #fff;
+    font-weight: bold;
+}
+
+button{
+    border:0;
+    outline:0;
+    background: none;
+}
+
+.form-control{
+    padding: 20px 40px;
+    font-size: 1.2rem;
+}
+
+
+.navbar{
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    background-color: var(--header-color);
+    padding: 10px 50px;
+}
+.navbar__left{
+    display:flex;
+    align-items: center;
+}
+.navbar__logo{
+    font-size: 30px;
+}
+.navbar__logo i{
+    color: #fff;
+    padding: 0px;
+}
+.navbar__logo a{
+    color: var( --sub-text-color);
+}
+.navbar__menu {
+    margin-left:70px;
+    margin-top:13px;
+    display : flex;
+    list-style: none;
+    padding-left: 0;
+}
+
+.navbar__menu li a{
+    color: var( --sub-text-color);
+    font-size: 1.3rem;
+    padding-right: 30px;
+}
+
+.navbar__menu li:hover a{
+    color:white;
+    font-size: 1.4rem;
+}
+.navbar__right{
+    color: var(--sub-text-color);
+    margin-right: 50px;
+    font-size:1.1rem;
+}
+.navbar__icons{
+    display:flex;
+    align-items: center;
+}
+.navbar__icons .icons-new-curation{
+    margin-right: 50px;
+    padding: 10px 20px;
+    background-color: var(--point-color);
+    font-weight: bold;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.navbar__icons .icons-new-curation:hover{
+    cursor: pointer;
+    background-color: var(--sub-text-color);
+    color: var(--text-color);
+}

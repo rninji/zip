@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zip 메인 홈</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;1,200;1,300;1,400&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
+    <script src="https://kit.fontawesome.com/82b3624cb5.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/newitem.css' %}">
+    <link rel="stylesheet" href="{% static 'css/detailitem.css' %}">
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="form-container">
+            <!-- 상품 정보 -->
+            <h1>{{item.name}}</h1>
+            <a href="{% url 'mypage' username=item.user %}">{{item.user}}</a>
+            <br>
+            {% if item.image %}
+            <img src="{{item.image.url}}" height=400><br>
+            {% endif %}
+            <p>Price : {{item.price}}원</p>
+            <p>Shop : <a href="{{item.shop}}">{{item.shop}}</a></p>
+            <p>Type : {{item.type}}</p>
+            <a href={% url 'homeitem' %}>홈으로</a>
+            <!-- 글 작성자=이용자면 수정/삭제 띄우기 -->
+            {% if item.user|stringformat:"s" == user.username|stringformat:"s" %}
+            <a href={% url 'edititem' index=item.pk %}>수정하기</a>
+            <a href={% url 'deleteitem' pk=item.pk %}>삭제하기</a>
+            {% endif %}
+            <br><br>
+            <!-- 좋아요 -->
+            <a href="">
+                {% if user in item.like_users.all %}
+                좋아요취소
+                <!-- <i class="fas fa-heart"></i> -->
+                {% else %}
+                좋아요
+                <!-- <i class="far fa-heart"></i> -->
+                {% endif %}
+            </a>
+            <!-- 댓글 -->
+            <br><br>
+            <hr><br>
+            <form method="POST">
+                {% csrf_token %}
+                <input type="text" name="text">
+                <button type="submit" class="comment-btn">댓글 달기</button>
+            </form>
+            {% for comment in comment_list %}
+            <h5>{{ comment.user }}</h5>
+            <h5>{{comment.created_date }}</h5>
+            <p>{{ comment.text|linebreaks}}</p>
+            <a href="{%url 'delete_comment' index=item.pk comment_pk=comment.pk %}">댓글 삭제</a>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>

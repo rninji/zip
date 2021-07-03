@@ -1,0 +1,150 @@
+:root{
+    --text-color: #494949;
+    --header-color:#212121;
+    --sub-text-color: #c2c2c2;
+    --point-color:#651fff ;
+    --body-color: #f5f5f5;
+
+}
+body{
+    color: var(--text-color);
+    position:relative;
+}
+
+a:hover{
+    color: var(--point-color);
+}
+
+
+.search-container{
+    padding-top: 100px;
+    align-items: flex-start;
+    height: 30rem;
+}
+.products-container{
+    width: 80%;
+    margin: 0 auto;
+}
+.product-container-header{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.3rem;
+}
+.product-categories{
+    display:flex;
+    list-style: none;
+}
+
+.product-categories li{
+    width: 200px;
+    text-align: center;
+    border-right: 2px solid var(--sub-text-color);
+    padding-right: 20px;
+}
+.product-categories a{
+    color:var(--text-color)
+}
+.product-create{
+    background-color: var(--sub-text-color);
+    padding: 15px;
+    color:var(--text-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 10px;
+}
+.product-create:hover{
+    color: #fff;
+    background-color: var(--point-color);
+}
+.product-create i{
+    margin-right: 10px;
+}
+
+.product-list-container{
+    margin-top: 100px;
+}
+.product-list-container .card{
+    height: 100%;
+}
+.product-list-container .row{
+    margin-bottom: 100px;
+}
+.product-list-container .col{
+    margin-right: 30px;
+}
+.card-img-top {
+    padding-top: 30px;
+    width: 80%;
+    margin: 0 auto;
+    height: 100%;
+    border-radius: 0;
+}
+.card-body{
+    text-align:center;
+    margin: 20px;
+}
+
+/* POPUP
+
+.popup-container{
+    background-color: rgba(0,0,0,0.5);
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    position:fixed;
+    bottom:0;
+    right:0;
+    top:0;
+    left:0;
+}
+.hidden{
+    opacity: 0;
+    pointer-events:none;
+}
+.popup{
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 0 2rem;
+    width: 60%;
+    max-height:800px;
+    overflow:auto;
+    position:relative;
+    display:flex;
+}
+.popup img{
+    margin : auto 0;
+}
+.popup .product-info{
+    margin: 20px;
+}
+.popup .product-description{
+    float:right;
+    margin-top : 100px;
+    margin-left: 100px;
+    
+}
+.product-description h1{
+    margin-bottom: 100px;
+}
+.product-description #like-btn{
+    color:rgb(197,188,188);
+    font-size: 5rem;
+    position: absolute;
+    bottom:30px;
+    right:50px;
+}
+#like-btn:hover{
+    color: salmon;
+}
+.popup .close-popup{
+    position:absolute;
+    font-size:1.5rem;
+    top:1rem;
+    right:1rem;
+}
+.popup .close-popup:hover{
+    cursor:pointer;
+    color: salmon;
+} */
+
