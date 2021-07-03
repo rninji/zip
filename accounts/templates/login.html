@@ -60,13 +60,7 @@
             <div class="input">
                 <form method="POST">
                     {% csrf_token %}
-                    <input type="hidden" name="csrfmiddlewaretoken"
-                        value="Pwcw33aJuwoua0ByU1qlD7m3ROnZis8lEU1prTlZVrHShhSCUeRa6ri9tA8FUVzz">
-                    <p><input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username"
-                            maxlength="150" required="" id="id_username" placeholder="username"></p>
-                    <p><input type="password" name="password" autocomplete="current-password" required=""
-                            id="id_password" placeholder="password">
-                    </p>
+                    {{form.as_p}}
                     <br>
                     <button type="submit">submit</button>
                 </form>
